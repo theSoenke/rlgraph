@@ -194,6 +194,9 @@ class RayExecutor(object):
                              num_timesteps, (100 * timesteps_executed / num_timesteps), iteration_discarded,
                              iteration_queue_inserted))
 
+            worker_stats = self.get_aggregate_worker_results()
+            self.logger.info(worker_stats)
+
         total_time = (time.monotonic() - start) or 1e-10
         self.logger.info("Time steps executed: {} ({} ops/s)".
                          format(timesteps_executed, timesteps_executed / total_time))
